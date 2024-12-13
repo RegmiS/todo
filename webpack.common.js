@@ -3,37 +3,36 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    app: './src/index.js',
-  },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Production',
-    }),
-  ],
-
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
-  },
-
+  entry: "./src/index.js",
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.html$/,
+        use: ["html-loader"]
       },
       {
-        test: /\.html$/i,
-        loader: "html-loader",
+        test: /\.(svg|png|jpg|gif)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            esModule: false,
+            name: "[name].[hash].[ext]",
+            outputPath: "imgs"
+          }
+        }
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },      
-    ],
-  },
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            esModule: false,
+            name: "[name].[hash].[ext]",
+            outputPath: "fonts"
+          }
+        }  
+      }      
+    ]
+  }
 
 };
