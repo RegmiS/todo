@@ -30,7 +30,7 @@ module.exports = {
             name: "[name].[hash].[ext]",
             outputPath: "fonts"
           }
-        }  
+        }
       }      
     ]
   }

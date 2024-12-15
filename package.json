@@ -1,7 +1,7 @@
 {
-    "name": "undefined",
+    "name": "todoapp",
     "version": "1.0.0",
-    "description": "",
+    "description": "A simple todo webapp made using html/css/js/webpack",
     "main": "index.js",
     "scripts": {
         "start": "webpack-dev-server --config webpack.dev.js --open",
