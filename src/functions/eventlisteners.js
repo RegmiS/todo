@@ -1,8 +1,9 @@
-import { addNewProj, removeProj, editProj } from "./logic";
+import { logProject, addNewProj, removeProj, editProj } from "./logic";
 
-const functionCall = () => {
-    console.log()
-};
+// let a = 1;
+// const functionCall = () => {
+//     addNewProj(a.toString(), a.toString());
+//     a += 1;
+//     logProject();
+// };
 
-const buttonthing = document.querySelector('#thing');
-buttonthing.addEventListener(onclick, functionCall);
