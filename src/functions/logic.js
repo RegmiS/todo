@@ -27,19 +27,15 @@ const removeProj = (proj) => {
 
 const editProj = (projObject, editedObject) => {
     projects[projObject].name = editedObject.name;
-    project[projObject].desc = editedObject.desc;
+    projects[projObject].desc = editedObject.desc;
 };
 
 const projValues = () => {
     return projects[0]["todos"];
 };
 
-// add project
-// remove project
-// edit project
-
 const logProject = () => {
     console.log(projects);
 };
 
-export {logProject, removeProj, editProj, addNewProj, projValues};
+export { logProject, removeProj, editProj, addNewProj, projValues };
