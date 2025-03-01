@@ -1,4 +1,5 @@
 import { logProject, addNewProj, removeProj, editProj } from "./logic";
+import { resetClassList } from "./render";
 
 // let a = 1;
 // const functionCall = () => {
@@ -7,6 +8,18 @@ import { logProject, addNewProj, removeProj, editProj } from "./logic";
 //     logProject();
 // };
 
+const init_eventListeners = () => {
+    const addPItem = document.querySelector('#project-items');
+    addPItem.addEventListener('click', () => {
+        console.log("add project item");
+    });
+
+    const addTItem = document.querySelector('#list-items');
+    addTItem.addEventListener('click', () => {
+        console.log("add to do item")
+    });
+    
+}
 
 
-// export {init_eventListeners};
+export {init_eventListeners};

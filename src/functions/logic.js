@@ -1,8 +1,5 @@
 let projects = [];
 
-// making a few fake projects with a few sample projects and todo lists with dates?
-// figuring out how to stringify and store the info and check if it already exists
-
 const generateFakeObj = (val) => {
     let fakeTodoObj = {
         prio: 1,
@@ -17,7 +14,7 @@ const addNewProj = (name, desc) => {
     projects.push({
         name: name,
         desc: desc,
-        todos: [generateFakeObj('one'), generateFakeObj('two')]
+        todos: [generateFakeObj('one'), generateFakeObj('two')],
     });
 };
 
@@ -30,12 +27,16 @@ const editProj = (projObject, editedObject) => {
     projects[projObject].desc = editedObject.desc;
 };
 
-const projValues = () => {
-    return projects[0]["todos"];
+const projTodos = (index) => {
+    return projects["todos"];
+};
+
+const projList = () => {
+    return projects;
 };
 
 const logProject = () => {
     console.log(projects);
 };
 
-export { logProject, removeProj, editProj, addNewProj, projValues };
+export { logProject, removeProj, editProj, addNewProj, projTodos, projList };

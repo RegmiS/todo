@@ -25,5 +25,5 @@ module.exports = merge(common, {
             }
         ]
     },
-    port: 9191,
+    devServer: {port: 9191},
 });

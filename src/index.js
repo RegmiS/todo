@@ -1,18 +1,11 @@
 import "./style.css"
-import { logProject, removeProj, editProj, addNewProj, projValues } from "./functions/logic";
-import { renderProj } from "./functions/render";
-// import { init_eventListeners } from "./functions/eventlisteners";
+import { projList, addNewProj } from "./functions/logic";
+import {renderProjs} from "./functions/render";
+import { init_eventListeners } from "./functions/eventlisteners";
 
-addNewProj("testone", "desc1");
-// logProject();
-// console.log(projValues()[0]);
-// let testTodoRender = projects[0];
-renderProj(projValues());
+addNewProj("Project Test 1", "Description a");
+addNewProj("Project Test 2", "Description b");
 
-const init_eventListeners = () => {
-    const btn = document.querySelector('#project-items');
-    btn.addEventListener('click', () => {
-        console.log(btn);
-    });
-}
+renderProjs(projList());
+
 init_eventListeners();
