@@ -24,5 +24,6 @@ module.exports = merge(common, {
               use: [MiniCssExtractPlugin.loader, "css-loader"],
             }
         ]
-    }
+    },
+    port: 9191,
 });
