@@ -1,4 +1,5 @@
-import { projEventListener } from "./eventlisteners";
+import { projEventListener, iconEventListener } from "./eventlisteners";
+import {getTodoInfo} from "./logic";
 
 const todoDoc = document.querySelector('#todo-items');
 
@@ -58,22 +59,41 @@ const renderProjects = (projObj) => {
     return newProjectItem;
 }
 
-const resetTodos = () => {
-    todoDoc.innerHTML = "";
-}
-
-const renderTodos = (todoObj) => {
+const renderTodos = (todoObj, projIndex) => {
     for (let i = 0; i < todoObj.length; i++){
         const newDiv = document.createElement('div');
         newDiv.classList = "list-item";
         
-        newDiv.appendChild(genParItems(todoObj[i]["prio"]));
-        newDiv.appendChild(materialIconSpan("check_box_outline_blank"));
-        newDiv.appendChild(genParItems(todoObj[i]["name"]));
-        newDiv.appendChild(genParItems(displayDate(todoObj[i]["date"])));
-        newDiv.appendChild(materialIconSpan("calendar_month"));
-        newDiv.appendChild(materialIconSpan("edit"));
-        newDiv.appendChild(materialIconSpan("delete"));
+        const parItemPrio = genParItems(todoObj[i]["prio"]);
+        newDiv.appendChild(parItemPrio);
+
+        let checkboxItem;
+        let parItemTodoName;
+        if (!getTodoInfo(projIndex, i, "completed")){
+            checkboxItem = materialIconSpan("check_box_outline_blank");
+            parItemTodoName = genParItems(todoObj[i]["name"]);
+        }
+        else{
+            checkboxItem = materialIconSpan("check_box");
+            parItemTodoName = genParItems("<s>" + todoObj[i]["name"] + "</s>");
+        }
+        iconEventListener(checkboxItem, projIndex, i);
+        newDiv.appendChild(checkboxItem);
+
+        
+        newDiv.appendChild(parItemTodoName);
+
+        const parItemDate = genParItems(displayDate(todoObj[i]["date"]));
+        newDiv.appendChild(parItemDate);
+
+        const calenderIcon = materialIconSpan("calendar_month");
+        newDiv.appendChild(calenderIcon);
+
+        const editIcon = materialIconSpan("edit");
+        newDiv.appendChild(editIcon);
+
+        const deleteIcon = materialIconSpan("delete");
+        newDiv.appendChild(deleteIcon);
 
         todoDoc.appendChild(newDiv);
     }
@@ -89,11 +109,11 @@ const renderProjs = (projObj) => {
         const projItem = renderProjects(projObj[i]);
         projEventListener(projItem, i);
         if (i==0){
-            renderTodos(projObj[i]["todos"]);
+            renderTodos(projObj[i]["todos"], i);
             renderProjDesc(projObj[i]["desc"]);
             addUnderLineProj(i);
         };
     }
 };
 
-export { renderTodos, clearToDo, renderProjs, resetClassList, addUnderLineProj, renderProjDesc, resetTodos };
+export { renderTodos, clearToDo, renderProjs, resetClassList, addUnderLineProj, renderProjDesc};

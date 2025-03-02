@@ -43,4 +43,12 @@ const logProject = () => {
     console.log(projects);
 };
 
-export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc };
+const getTodoInfo = (projectIndex, todoIndex, dataType) => {
+    return projList()[projectIndex]["todos"][todoIndex][dataType];
+}
+
+const setTodoData = (projectIndex, todoIndex, dataType, newData) => {
+    projects[projectIndex]["todos"][todoIndex][dataType] = newData;
+}
+
+export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData };

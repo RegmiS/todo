@@ -1,5 +1,5 @@
-import {projTodos, projDesc} from './logic';
-import { resetClassList, addUnderLineProj, renderProjDesc, resetTodos, renderTodos } from "./render";
+import {projTodos, projDesc, getTodoInfo, setTodoData} from './logic';
+import { resetClassList, addUnderLineProj, renderProjDesc, clearToDo, renderTodos } from "./render";
 
 const init_eventListeners = () => {
     const addPItem = document.querySelector('#project-items');
@@ -11,17 +11,33 @@ const init_eventListeners = () => {
     addTItem.addEventListener('click', () => {
         console.log("add to do item")
     });
-    
-}
+};
+
+const resetTodos = (index) => {
+    clearToDo();
+    renderTodos(projTodos(index), index);
+};
 
 const projEventListener = (projObject, index) => {
     projObject.addEventListener('click', () => {
         resetClassList();
         addUnderLineProj(index);
-        resetTodos();
         renderProjDesc(projDesc(index));
-        renderTodos(projTodos(index));
+        resetTodos(index);
     });
 };
 
-export {init_eventListeners, projEventListener};
+const iconEventListener = (iconObject, projIndex, todoIndex) => {
+    iconObject.addEventListener('click', () => {
+        if(getTodoInfo(projIndex, todoIndex, "completed")){
+            setTodoData(projIndex, todoIndex, "completed", false);
+            resetTodos(projIndex);
+        }
+        else{
+            setTodoData(projIndex, todoIndex, "completed", true);
+            resetTodos(projIndex);
+        }
+    });
+};
+
+export {init_eventListeners, projEventListener, iconEventListener};
