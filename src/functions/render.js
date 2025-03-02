@@ -1,12 +1,4 @@
-const deleteCall = () => {
-    console.log("delete items");
-};
-
-// const buttonthing = document.querySelector('#edit-cal');
-// buttonthing.addEventListener('click', functionCall);
-
-// const buttontwo = document.querySelector('#del-todo');
-// buttontwo.addEventListener('click', deleteCall);
+import { projEventListener } from "./eventlisteners";
 
 const todoDoc = document.querySelector('#todo-items');
 
@@ -63,13 +55,18 @@ const renderProjects = (projObj) => {
     newProjectItem.appendChild(editProjItem);
 
     projectList.appendChild(newProjectItem);
+    return newProjectItem;
+}
+
+const resetTodos = () => {
+    todoDoc.innerHTML = "";
 }
 
 const renderTodos = (todoObj) => {
     for (let i = 0; i < todoObj.length; i++){
         const newDiv = document.createElement('div');
         newDiv.classList = "list-item";
-
+        
         newDiv.appendChild(genParItems(todoObj[i]["prio"]));
         newDiv.appendChild(materialIconSpan("check_box_outline_blank"));
         newDiv.appendChild(genParItems(todoObj[i]["name"]));
@@ -82,17 +79,21 @@ const renderTodos = (todoObj) => {
     }
 };
 
-const renderProjs = (projObj) => {
-    // render Description and Project Names
-    // render toods of first project and show that the first project is selected
+const renderProjDesc = (descName) => {
+    const projD = document.querySelector('#proj-desc');
+    projD.innerHTML = descName;
+};
 
+const renderProjs = (projObj) => {
     for (let i = 0; i < projObj.length; i++) {
-        renderProjects(projObj[i]);
+        const projItem = renderProjects(projObj[i]);
+        projEventListener(projItem, i);
         if (i==0){
             renderTodos(projObj[i]["todos"]);
+            renderProjDesc(projObj[i]["desc"]);
             addUnderLineProj(i);
         };
     }
-}
+};
 
-export { renderTodos, clearToDo, renderProjs, resetClassList };
+export { renderTodos, clearToDo, renderProjs, resetClassList, addUnderLineProj, renderProjDesc, resetTodos };

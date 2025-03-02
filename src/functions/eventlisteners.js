@@ -1,12 +1,5 @@
-import { logProject, addNewProj, removeProj, editProj } from "./logic";
-import { resetClassList } from "./render";
-
-// let a = 1;
-// const functionCall = () => {
-//     addNewProj(a.toString(), a.toString());
-//     a += 1;
-//     logProject();
-// };
+import {projTodos, projDesc} from './logic';
+import { resetClassList, addUnderLineProj, renderProjDesc, resetTodos, renderTodos } from "./render";
 
 const init_eventListeners = () => {
     const addPItem = document.querySelector('#project-items');
@@ -21,5 +14,14 @@ const init_eventListeners = () => {
     
 }
 
+const projEventListener = (projObject, index) => {
+    projObject.addEventListener('click', () => {
+        resetClassList();
+        addUnderLineProj(index);
+        resetTodos();
+        renderProjDesc(projDesc(index));
+        renderTodos(projTodos(index));
+    });
+};
 
-export {init_eventListeners};
+export {init_eventListeners, projEventListener};
