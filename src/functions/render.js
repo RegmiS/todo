@@ -1,4 +1,4 @@
-import { projEventListener, iconEventListener } from "./eventlisteners";
+import { projEventListener, iconEventListener, symbolEventListener } from "./eventlisteners";
 import {getTodoInfo} from "./logic";
 
 const todoDoc = document.querySelector('#todo-items');
@@ -87,12 +87,15 @@ const renderTodos = (todoObj, projIndex) => {
         newDiv.appendChild(parItemDate);
 
         const calenderIcon = materialIconSpan("calendar_month");
+        symbolEventListener(calenderIcon, "calender icon", projIndex, i);
         newDiv.appendChild(calenderIcon);
 
         const editIcon = materialIconSpan("edit");
+        symbolEventListener(editIcon, "edit icon", projIndex, i);
         newDiv.appendChild(editIcon);
 
         const deleteIcon = materialIconSpan("delete");
+        symbolEventListener(deleteIcon, "delete icon", projIndex, i);
         newDiv.appendChild(deleteIcon);
 
         todoDoc.appendChild(newDiv);

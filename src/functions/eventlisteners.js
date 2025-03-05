@@ -40,4 +40,10 @@ const iconEventListener = (iconObject, projIndex, todoIndex) => {
     });
 };
 
-export {init_eventListeners, projEventListener, iconEventListener};
+const symbolEventListener = (symbolObject, symbolType, projIndex, todoIndex) => {
+    symbolObject.addEventListener('click', () => {
+        console.log(symbolType, projIndex, todoIndex);
+    });
+};
+
+export {init_eventListeners, projEventListener, iconEventListener, symbolEventListener};
