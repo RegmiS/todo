@@ -57,6 +57,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .list-item p {
@@ -89,4 +90,24 @@ body {
 /* underlining current project item */
 .cur-proj {
     border-bottom: solid
+}
+
+.inputfield {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    gap: 5px;
+    margin-bottom: 5vh;
+}
+
+.form-todo {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    flex: .5;
+}
+
+.formbuttons input {
+    margin-right: 30px;
 }

@@ -1,3 +1,4 @@
+import { clickedEdit } from "./editTask";
 import { projEventListener, iconEventListener, symbolEventListener } from "./eventlisteners";
 import {getTodoInfo} from "./logic";
 
@@ -91,7 +92,7 @@ const renderTodos = (todoObj, projIndex) => {
         newDiv.appendChild(calenderIcon);
 
         const editIcon = materialIconSpan("edit");
-        symbolEventListener(editIcon, "edit icon", projIndex, i);
+        clickedEdit(editIcon, projIndex, i);
         newDiv.appendChild(editIcon);
 
         const deleteIcon = materialIconSpan("delete");
