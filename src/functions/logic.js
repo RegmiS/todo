@@ -1,5 +1,15 @@
 let projects = [];
 
+let curProj = 0;
+
+const getCurProj = () => {
+    return curProj;
+}
+
+const updateCurProj = (val) => {
+    curProj = val;
+}
+
 const generateFakeObj = (val, projName) => {
     let fakeTodoObj = {
         prio: 1,
@@ -51,4 +61,4 @@ const setTodoData = (projectIndex, todoIndex, dataType, newData) => {
     projects[projectIndex]["todos"][todoIndex][dataType] = newData;
 }
 
-export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData };
+export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj };

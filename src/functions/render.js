@@ -87,10 +87,6 @@ const renderTodos = (todoObj, projIndex) => {
         const parItemDate = genParItems(displayDate(todoObj[i]["date"]));
         newDiv.appendChild(parItemDate);
 
-        const calenderIcon = materialIconSpan("calendar_month");
-        symbolEventListener(calenderIcon, "calender icon", projIndex, i);
-        newDiv.appendChild(calenderIcon);
-
         const editIcon = materialIconSpan("edit");
         clickedEdit(editIcon, projIndex, i);
         newDiv.appendChild(editIcon);

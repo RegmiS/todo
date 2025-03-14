@@ -1,5 +1,20 @@
-import {projTodos, projDesc, getTodoInfo, setTodoData} from './logic';
+import {projTodos, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj} from './logic';
 import { resetClassList, addUnderLineProj, renderProjDesc, clearToDo, renderTodos } from "./render";
+
+
+const hideAddItem = () => {
+    const addItemSection = document.querySelector('#list-items');
+    addItemSection.classList = "add-items hidden";
+    const addTodo = document.querySelector('#add-item-todo');
+    addTodo.classList = "add-items-todo active";
+};
+
+const displayAdditem = () => {
+    const addItemSection = document.querySelector('#list-items');
+    addItemSection.classList = "add-items active";
+    const addTodo = document.querySelector('#add-item-todo');
+    addTodo.classList = "add-items-todo hidden";
+}
 
 const init_eventListeners = () => {
     const addPItem = document.querySelector('#project-items');
@@ -9,7 +24,20 @@ const init_eventListeners = () => {
 
     const addTItem = document.querySelector('#list-items');
     addTItem.addEventListener('click', () => {
-        console.log("add to do item")
+        hideAddItem();
+    });
+
+    const todoFormCancel = document.querySelector('#todo-form-cancel');
+    todoFormCancel.addEventListener('click', (e) => {
+        e.preventDefault();
+        displayAdditem();
+    });
+
+    const todoFormAddTodo = document.querySelector('#todo-form-add');
+    todoFormAddTodo.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("addtodo item");
+        displayAdditem();
     });
 };
 
@@ -20,6 +48,8 @@ const resetTodos = (index) => {
 
 const projEventListener = (projObject, index) => {
     projObject.addEventListener('click', () => {
+        updateCurProj(index);
+        //console.log(getCurProj());
         resetClassList();
         addUnderLineProj(index);
         renderProjDesc(projDesc(index));

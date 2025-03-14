@@ -1,4 +1,4 @@
-import { projTodos, setTodoData } from "./logic";
+import { getTodoInfo, projTodos, setTodoData } from "./logic";
 import { clearToDo, renderProjs, renderTodos } from "./render";
 
 const clickedEdit = (editButton, projId, todoId) => {
@@ -28,9 +28,12 @@ const submitEventListener = (submitButton, formInfo, projIndex, todoIndex) => {
     });
 };
 
-const cancelEventListener = (cancelButton) => {
+const cancelEventListener = (cancelButton, projId, todoId) => {
     cancelButton.addEventListener('click', (e) => {
-        console.log("test click button, should delete");
+        e.preventDefault();
+        const projObj = projTodos(projId);
+        clearToDo();
+        renderTodos(projObj, projId);
     });
 };
 
@@ -46,7 +49,7 @@ const createForm = (tite, date, prio, projId, todoId) => {
     const titleForm = document.createElement('input');
     titleForm.setAttribute("type", "text");
     titleForm.id = "editListTitle";
-    titleForm.placeholder = "Current title replace later";
+    titleForm.value = getTodoInfo(projId, todoId, "name");
     formEl.appendChild(titleForm);
 
     const labelPrio = document.createElement('label');
@@ -57,6 +60,7 @@ const createForm = (tite, date, prio, projId, todoId) => {
     const inputPrio = document.createElement('input');
     inputPrio.setAttribute("type", "text");
     inputPrio.id = "editListPrio";
+    inputPrio.value = getTodoInfo(projId, todoId, "prio");
     formEl.appendChild(inputPrio);
 
     const labelDate = document.createElement('label');
@@ -67,6 +71,7 @@ const createForm = (tite, date, prio, projId, todoId) => {
     const inputDate = document.createElement('input');
     inputDate.setAttribute("type", "date");
     inputDate.id = "editListDate";
+    inputDate.value = getTodoInfo(projId, todoId, "date");
     formEl.appendChild(inputDate, formEl);
 
     const divEl = document.createElement('div');
@@ -80,7 +85,7 @@ const createForm = (tite, date, prio, projId, todoId) => {
     const cancelBt = document.createElement('input');
     cancelBt.setAttribute("type", "submit");
     cancelBt.setAttribute("value", "Cancel");
-    cancelEventListener(cancelBt);
+    cancelEventListener(cancelBt, projId, todoId);
 
     divEl.appendChild(updateBt);
     divEl.appendChild(cancelBt);
