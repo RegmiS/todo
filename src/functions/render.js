@@ -109,6 +109,7 @@ const renderProjs = (projObj) => {
         const projItem = renderProjects(projObj[i]);
         projEventListener(projItem, i);
         if (i==0){
+            clearToDo();
             renderTodos(projObj[i]["todos"], i);
             renderProjDesc(projObj[i]["desc"]);
             addUnderLineProj(i);

@@ -1,5 +1,5 @@
-import {projTodos, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj} from './logic';
-import { resetClassList, addUnderLineProj, renderProjDesc, clearToDo, renderTodos } from "./render";
+import {projTodos, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo, projList} from './logic';
+import { resetClassList, addUnderLineProj, renderProjDesc, clearToDo, renderTodos, renderProjs } from "./render";
 
 
 const hideAddItem = () => {
@@ -36,7 +36,13 @@ const init_eventListeners = () => {
     const todoFormAddTodo = document.querySelector('#todo-form-add');
     todoFormAddTodo.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log("addtodo item");
+        const name = document.querySelector('#formaddtodo')[0].value;
+        const prio = document.querySelector('#formaddtodo')[1].value;
+        const date = document.querySelector('#formaddtodo')[2].value;
+        addNewTodo(getCurProj(), prio, name, date);
+        const todos = projList()[getCurProj()]["todos"];
+        clearToDo();
+        renderTodos(todos, getCurProj());
         displayAdditem();
     });
 };

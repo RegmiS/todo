@@ -55,10 +55,21 @@ const logProject = () => {
 
 const getTodoInfo = (projectIndex, todoIndex, dataType) => {
     return projList()[projectIndex]["todos"][todoIndex][dataType];
-}
+};
 
 const setTodoData = (projectIndex, todoIndex, dataType, newData) => {
     projects[projectIndex]["todos"][todoIndex][dataType] = newData;
-}
+};
 
-export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj };
+const addNewTodo = (projIndex, prio, todoname, date) => {
+    console.log("add new todo obj");
+    projects[projIndex]["todos"].push({
+        prio: prio,
+        completed: false,
+        name: todoname,
+        date: date
+    });
+    //console.log(projList()[projIndex]);
+};
+
+export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo };
