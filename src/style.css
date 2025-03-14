@@ -78,6 +78,18 @@ body {
     width: fit-content;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+.active {
+    visibility: visible;
+}
+
+.add-items-todo {
+    display: flex;
+    flex-direction: row;
+}
 
 /* font and color stuff */
 .head-item {
