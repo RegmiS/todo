@@ -1,4 +1,4 @@
-import {projTodos, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo, projList} from './logic';
+import {projTodos, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo, projList, removeTodo} from './logic';
 import { resetClassList, addUnderLineProj, renderProjDesc, clearToDo, renderTodos, renderProjs } from "./render";
 
 
@@ -78,7 +78,10 @@ const iconEventListener = (iconObject, projIndex, todoIndex) => {
 
 const symbolEventListener = (symbolObject, symbolType, projIndex, todoIndex) => {
     symbolObject.addEventListener('click', () => {
-        console.log(symbolType, projIndex, todoIndex);
+        if(symbolType == "delete icon"){
+            removeTodo(projIndex, todoIndex);
+            resetTodos(projIndex);
+        };
     });
 };
 

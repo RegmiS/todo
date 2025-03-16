@@ -69,7 +69,10 @@ const addNewTodo = (projIndex, prio, todoname, date) => {
         name: todoname,
         date: date
     });
-    //console.log(projList()[projIndex]);
 };
 
-export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo };
+const removeTodo = (projIndex, todoIndex) => {
+    projects[projIndex]["todos"].splice(todoIndex);
+};
+
+export { logProject, removeProj, editProj, addNewProj, projTodos, projList, projDesc, getTodoInfo, setTodoData, getCurProj, updateCurProj, addNewTodo, removeTodo };
