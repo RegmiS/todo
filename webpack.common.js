@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -31,8 +32,18 @@ module.exports = {
             outputPath: "fonts"
           }
         }
-      }      
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      }
     ]
-  }
-
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: "./src/index.html",
+        favicon: "./src/images/favicon.ico"
+    }),
+    new MiniCssExtractPlugin(),
+  ],
 };
